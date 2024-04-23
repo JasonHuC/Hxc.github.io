@@ -35,6 +35,7 @@ export const PATHS = {
     [PATHS.SITE_BLOG]: 'Blog',
     [PATHS.SITE_SNIPPET]: 'Snippet',
     [PATHS.SITE_ABOUT]: 'About',
+    [PATHS.SITE_GALLERY]: 'Gallery',
     [PATHS.SITEMAP]: 'Sitemap',
   
     /** ************* ADMIN ****************** */
