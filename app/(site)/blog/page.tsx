@@ -1,15 +1,21 @@
-import { BlogPosts } from 'app/components/posts'
+import { PageHeader } from '@/components/page-header';
 
-export const metadata = {
-  title: 'Blog',
-  description: 'Read my blog.',
-}
+import { PATHS } from '@/constants';
+import { BlogList, getPublishedBlogs } from '@/features/blog';
 
-export default function Page() {
+export const revalidate = 60;
+
+export default async function Page() {
+  const { blogs, uvMap } = await getPublishedBlogs();
+
   return (
-    <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
-      <BlogPosts />
-    </section>
-  )
+      <div className="w-full flex flex-col justify-center px-6 md:max-w-screen-md  2xl:max-w-6xl  md:mx-auto pb-24 pt-8">
+        <PageHeader
+            breadcrumbList={[PATHS.SITE_HOME, PATHS.SITE_BLOG]}
+            className="mb-9"
+        />
+
+        <BlogList blogs={blogs} uvMap={uvMap} />
+      </div>
+  );
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
@@ -16,9 +18,9 @@ import {
 export const Navbar = () => {
     return (
         <header className={cn(
-            'w-full sticky border-x-0 top-0 flex justify-center'//未添加：backdrop-blur transition-[background-color,border-width] z-10 ,(scroll?.top ?? 0) > 60 && 'bg-background/50 border-b border-border/50',
+            'w-full sticky border-x-0 top-0 flex justify-center backdrop-blur transition-[background-color,border-width] z-10 ,(scroll?.top ?? 0) > 60 && \'bg-background/50 border-b border-border/50'//未添加：backdrop-blur transition-[background-color,border-width] z-10 ,(scroll?.top ?? 0) > 60 && 'bg-background/50 border-b border-border/50',
         )}>
-            <div className="w-full flex items-center h-16 p-4 sm:p-8"//未添加：md:max-w-screen-md 2xl:max-w-screen-xl
+            <div className="w-full flex items-center h-16 p-4 sm:p-8 md:max-w-screen-md 2xl:max-w-screen-xl"
             >
                 <NextLink
                     href={PATHS.SITE_HOME}
