@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 使用 postgresql 作为数据库
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())//@id 修饰符用于标记字段为主键 ; @default 修饰符用于指定字段的默认值
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text//当你明确知道某个字段可能需要存储长文本时，使用 @db.Text 可以明确指示 Prisma 在数据库中为该字段使用 TEXT 类型，从而避免任何长度限制问题。|| Prisma 通常将 String 类型映射为数据库中的 VARCHAR 类型（长度可能依数据库的默认设置而定）。这在大多数用例中是足够的，但对于需要存储可能超出普通长度限制的数据（如长文本、JSON 字符串、代码片段等），默认的 VARCHAR 类型可能就不够用了。
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)//userId 是外键，对应 User 表的主键 id
+  //onDelete: Cascade：这定义了如果关联的 User 记录被删除时对当前记录的处理策略::Cascade 选项意味着如果 User 记录被删除，那么引用这个 User 的当前模型的记录也将被删除。
+
+  @@unique([provider, providerAccountId]) //不能存在两个provider，providerAccountId一样的Account.
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  password      String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+
+enum TagTypeEnum {
+  // 通用
+  ALL
+  // 仅用于blog
+  BLOG
+  // 仅用于片段
+  SNIPPET
+  // 仅用于笔记
+  NOTE
+}
+
+model Tag {
+  name     String      @unique
+  slug     String      @unique
+  blogs    Blog[]
+  snippets Snippet[]
+  notes    Note[]
+  type     TagTypeEnum @default(ALL)
+
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Blog {
+  title       String  @unique
+  slug        String  @unique
+  description String
+  body        String  @db.Text
+  cover       String?
+  author      String?
+  published   Boolean @default(false)
+  tags        Tag[]
+
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Snippet {
+  title       String  @unique
+  slug        String  @unique
+  description String
+  body        String  @db.Text
+  published   Boolean @default(false)
+  tags        Tag[]
+
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Note {
+  body      String  @db.Text
+  published Boolean @default(false)
+  tags      Tag[]
+
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
