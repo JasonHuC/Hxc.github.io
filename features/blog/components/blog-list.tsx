@@ -1,14 +1,37 @@
 import React from 'react';
 import {IllustrationNoContent} from "@/app/components/illustrations";
-import {BlogListItem}
-import
+import {BlogListItem} from './blog-list-item'
+import {type Blog} from "@/features/blog/types";
+
 type BlogListProps = {
     blogs:Blog[];
     uvMap?: Record<string,number>;
 }
-export default function BlogList({blogs,uvMap}) {
+export const BlogList = ({blogs,uvMap}:BlogListProps) => {
+    if (!blogs.length){
+        return (
+            <div className="grid gap-8 place-content-center">
+                <IllustrationNoContent className="w-[30vh] h-[30vh]"/>
+                <h3 className="text-2xl font-semibold tracking-tight text-center">
+                    暂无Blog
+                </h3>
+            </div>
+        )
+    }
     return (
-        <div></div>
-    );
+        <ul className="grid grid-cols-1 2xl:grid-cols-2 gap-4">
+            {blogs.map((el, idx) => (
+                <li
+                    key={el.id}
+                    className="animate-fade-up animate-ease-in-out"
+                    style={{
+                        animationDelay: `${(idx + 1) * 200}ms`,
+                    }}
+                >
+                    <BlogListItem blog={el} uvMap={uvMap}/>
+                </li>
+            ))}
+        </ul>
+    )
 }
 
