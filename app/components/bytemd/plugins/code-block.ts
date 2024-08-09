@@ -54,10 +54,10 @@ const successTip = `<span style="font-size: 12px;">复制成功!</span>`;
 export const codeBlockPlugin = (): BytemdPlugin => {
   return {
     rehype: (process) =>
-      process.use(() => (tree) => {
+      process.use(() => (tree) => {//带外层闭包的写法。这里的外层 () => 是一个无参的箭头函数，它返回一个实际处理树的函数 (tree) => { ... }。
         visit(tree, 'element', (node) => {
           if (node.tagName === 'pre') {
-            node.children.push(copyBtnNode);
+            node.children.push(copyBtnNode);//如果节点是 <pre> 标签，向其子节点中添加 copyBtnNode（一个包含复制按钮的节点）。
           }
 
           visit(tree, 'element', (code, idx, parent) => {

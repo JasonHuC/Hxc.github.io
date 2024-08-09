@@ -12,6 +12,17 @@ export const cn = (...inputs:ClassValue[]) => {
     // clsx:合并classname
     return twMerge(clsx(inputs));//twMerge：合并 并避免tailwind的冲突
 }
+
+export const toSlug = (s: string) => {
+    if (!s) {
+        return '';
+    }
+
+    return slugify(s, {
+        lower: true,
+    });
+};
+
 export const toFromNow = (date: number | Date) => {
     return dayjs(date).locale('zh-cn').fromNow();
 };
@@ -55,4 +66,14 @@ export const isBrowser = () => {
         window.document &&
         window.document.createElement
     );
+};
+export const toSlashDateString = (date: number | Date) => {
+    return dayjs(date).locale('zh-cn').format('YYYY年M月D日 dddd HH:mm:ss');
+};
+
+export const isAdmin = (email?: string | null) => {
+    if (!email || !ADMIN_EMAILS?.length) {
+        return false;
+    }
+    return ADMIN_EMAILS.includes(email);
 };

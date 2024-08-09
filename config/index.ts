@@ -5,3 +5,4 @@ export * from './env';
 
 export * from './db'
 export * from './site'
+export * from './oss'

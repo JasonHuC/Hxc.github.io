@@ -9,8 +9,8 @@ import {
     CardTitle,
 } from '@/app/components/ui/card';
 
-import { IconBarandGithub } from '@/components/icons';
-import { NextLink } from '@/components/next-link';
+import { IconBarandGithub } from '@/app/components/icons';
+import { NextLink } from '@/app/components/next-link';
 
 import { PATHS } from '@/constants';
 
