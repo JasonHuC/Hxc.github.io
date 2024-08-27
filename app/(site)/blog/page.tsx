@@ -1,21 +1,17 @@
-// import { PageHeader } from '@/components/page-header';
+import { Wrapper } from "@/app/components/wrapper";
 
-import { PATHS } from '@/constants';
-import { BlogList, getPublishedBlogs } from '@/features/blog';
+import { BlogList, getPublishedBlogs } from "@/features/blog";
 
 export const revalidate = 60;
 
 export default async function Page() {
-  const { blogs } = await getPublishedBlogs();
+    const { blogs, uvMap } = await getPublishedBlogs();
 
-  return (
-      <div className="w-full flex flex-col justify-center px-6 md:max-w-screen-md  2xl:max-w-6xl  md:mx-auto pb-24 pt-8">
-        {/*<PageHeader*/}
-        {/*    breadcrumbList={[PATHS.SITE_HOME, PATHS.SITE_BLOG]}*/}
-        {/*    className="mb-9"*/}
-        {/*/>*/}
+    return (
+        <Wrapper className="flex min-h-screen flex-col px-6 pb-24 pt-8">
+            <h2 className="pb-8 text-3xl font-bold md:text-4xl">最新文章</h2>
 
-        <BlogList blogs={blogs}  />
-      </div>
-  );
+            <BlogList blogs={blogs} uvMap={uvMap} />
+        </Wrapper>
+    );
 }

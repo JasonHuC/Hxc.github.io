@@ -60,6 +60,7 @@ export const PATHS = {
       [PATHS.SITE_BLOG]: "这里记录了我的想法、文章，希望和大家一起交流～",
       [PATHS.SITE_SNIPPET]: "多是一些零零碎碎的片段，通常是代码片段",
       [PATHS.SITE_ABOUT]: `叮～ 你有一份关于${NICKNAME}的简介，请查收～`,
+      [PATHS.SITE_GALLERY]: "这里是个人摄影日记📷，收录日常的美好瞬间。",
 
       /** ************* ADMIN ****************** */
       [PATHS.ADMIN_HOME]: "欢迎回来，要努力学习嗷～",
