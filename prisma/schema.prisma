@@ -11,17 +11,16 @@ generator client {
 // 使用 postgresql 作为数据库
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url      = env("DATABASE_URL") // uses connection pooling
 }
 
 model Account {
-  id                String  @id @default(cuid())//@id 修饰符用于标记字段为主键 ; @default 修饰符用于指定字段的默认值
+  id                String  @id @default(cuid()) //@id 修饰符用于标记字段为主键 ; @default 修饰符用于指定字段的默认值
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text//当你明确知道某个字段可能需要存储长文本时，使用 @db.Text 可以明确指示 Prisma 在数据库中为该字段使用 TEXT 类型，从而避免任何长度限制问题。|| Prisma 通常将 String 类型映射为数据库中的 VARCHAR 类型（长度可能依数据库的默认设置而定）。这在大多数用例中是足够的，但对于需要存储可能超出普通长度限制的数据（如长文本、JSON 字符串、代码片段等），默认的 VARCHAR 类型可能就不够用了。
+  refresh_token     String? @db.Text // 当你明确知道某个字段可能需要存储长文本时，使用 @db.Text 可以明确指示 Prisma 在数据库中为该字段使用 TEXT 类型，从而避免任何长度限制问题。|| Prisma 通常将 String 类型映射为数据库中的 VARCHAR 类型（长度可能依数据库的默认设置而定）。这在大多数用例中是足够的，但对于需要存储可能超出普通长度限制的数据（如长文本、JSON 字符串、代码片段等），默认的 VARCHAR 类型可能就不够用了。
   access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
@@ -29,10 +28,10 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)//userId 是外键，对应 User 表的主键 id
-  //onDelete: Cascade：这定义了如果关联的 User 记录被删除时对当前记录的处理策略::Cascade 选项意味着如果 User 记录被删除，那么引用这个 User 的当前模型的记录也将被删除。
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // userId 是外键，对应 User 表的主键 id
 
-  @@unique([provider, providerAccountId]) //不能存在两个provider，providerAccountId一样的Account.
+  // onDelete: Cascade：这定义了如果关联的 User 记录被删除时对当前记录的处理策略::Cascade 选项意味着如果 User 记录被删除，那么引用这个 User 的当前模型的记录也将被删除。
+  @@unique([provider, providerAccountId]) // 不能存在两个provider，providerAccountId一样的Account.
 }
 
 model Session {
@@ -61,7 +60,6 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
-
 
 enum TagTypeEnum {
   // 通用
