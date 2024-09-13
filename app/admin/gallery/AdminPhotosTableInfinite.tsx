@@ -1,7 +1,7 @@
 'use client';
 
 import { PATH_ADMIN_PHOTOS } from '@/features/gallery/site/paths';
-import InfinitePhotoScroll from '../photo/InfinitePhotoScroll';
+import InfinitePhotoScroll from '@/features/gallery/photo/InfinitePhotoScroll';
 import AdminPhotosTable from './AdminPhotosTable';
 import { ComponentProps } from 'react';
 

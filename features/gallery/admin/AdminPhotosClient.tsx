@@ -1,5 +1,12 @@
-'use client';
+'use client'
+//在 Next.js 中，当你使用 use client 指令时，传递给客户端组件的 props 必须是可序列化的。也就是说，所有传递给客户端组件的属性都需要能够转换为 JSON 格式。这就排除了像函数、Date 对象、Map、Set 等非序列化数据类型的使用。
+// 序列化： 把数据从内存中的对象转换为字节流或字符串形式，以便将其存储在文件、数据库或通过网络传输。
+// 最常见的序列化格式是 JSON（JavaScript Object Notation），但也有其他格式，比如 XML、YAML、二进制等。
+// 反序列化：将字节流或字符串形式的数据重新转换为内存中的对象，恢复原始的数据结构。
+// 例如，将一个对象转化成json字符串的过程就是序列化：JSON.stringify(user);
 
+// 为什么use client的代码环境中，react组件不能接受非序列化prop：
+// use client环境下，代码需要在浏览器中执行
 import PhotoUpload from '@/features/gallery/photo/PhotoUpload';
 import { clsx } from 'clsx';
 import SiteGrid from '@/features/gallery/components/SiteGrid';
