@@ -4,13 +4,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "db:gen": "prisma generate",
-    "db:push": "prisma db push"
+    "db:gen": "src/prisma generate",
+    "db:push": "src/prisma db push"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.58",
     "@auth/prisma-adapter": "^2.0.0",
     "@aws-sdk/client-s3": "^3.645.0",
+    "@aws-sdk/s3-request-presigner": "3.645.0",
     "@bytemd/plugin-breaks": "^1.21.0",
     "@bytemd/plugin-frontmatter": "^1.21.0",
     "@bytemd/plugin-gfm": "^1.21.0",
@@ -35,6 +36,8 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/postcss": "4.0.0-alpha.13",
     "@tanstack/react-table": "^8.17.3",
     "@types/ali-oss": "^6.16.11",
@@ -67,8 +70,8 @@
     "image-type": "^5.2.0",
     "ioredis": "^5.4.1",
     "lodash-es": "^4.17.21",
-    "next": "^14.2.2",
-    "next-auth": "5.0.0-beta.18",
+    "next": "^14.2.7",
+    "next-auth": "5.0.0-beta.19",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.3.0",
     "pg": "^8.12.0",
@@ -91,6 +94,7 @@
     "ts-exif-parser": "^0.2.2",
     "typescript": "5.3.3",
     "unist-util-visit": "^5.0.0",
+    "use-debounce": "^10.0.3",
     "zod": "^3.23.4"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ import { addDynamicIconSelectors } from '@iconify/tailwind';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import { type Config } from 'tailwindcss';
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 export default {
   darkMode: ['class'],
@@ -15,24 +16,36 @@ export default {
   ],
   theme: {
     screens: {
-      sm: "640px",
+      'xs':'390px',
+      ...defaultTheme.screens,
+      'sm': "640px",
       // => @media (min-width: 640px) { ... }
 
-      md: "768px",
+      'md': "768px",
       // => @media (min-width: 768px) { ... }
 
-      lg: "1024px",
+      'lg': "1024px",
       // => @media (min-width: 1024px) { ... }
-
       // 基础版心
-      wrapper: "1200px",
+      'wrapper': "1200px",
 
-      xl: "1280px",
+      'xl': "1280px",
       // => @media (min-width: 1280px) { ... }
 
       "2xl": "1440px",
       // => @media (min-width: 1440px) { ... }
+      '3xl':"1640px",
     },
+    fontSize: {
+      'xs':   ['0.75rem', '1rem'],          // 12px on 16px
+      'sm':   ['0.84375rem', '1.1875rem'],  // 13.5px on 19px [Default: mobile]
+      'base': ['0.875rem', '1.25rem'],      // 14px on 20px   [Default: desktop]
+      'lg':   ['1rem', '1.25rem'],          // 16px on 20px
+      'xl':   ['1.125rem', '1.25rem'],      // 18px on 20px
+      '2xl':  ['1.25rem', '1.25rem'],       // 20px on 20px
+      '3xl':  ['1.5rem', '1.5rem'],         // 24px on 24px
+    },
+
     debugScreens: {
       position: ['bottom', 'right'],
       ignore: ['dark'],
@@ -74,14 +87,16 @@ export default {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
-      borderRadius: {
-        lg: `var(--radius)`,
-        md: `calc(var(--radius) - 2px)`,
-        sm: 'calc(var(--radius) - 4px)',
-      },
+      // borderRadius: {
+      //   lg: `var(--radius)`,
+      //   md: `calc(var(--radius) - 2px)`,
+      //   sm: 'calc(var(--radius) - 4px)',
+      // },
       fontFamily: {
-        sans: ['Poppins', 'PingFang', ...fontFamily.sans],
-        'firecode': ['Fira Code',...fontFamily.mono],
+        // 'sans': ['Poppins', 'PingFang', ...fontFamily.sans],
+        // 'firecode': ['Fira Code',...fontFamily.mono],
+        'mono': ['var(--font-ibm-plex-mono)', ...defaultTheme.fontFamily.mono],
+
       },
       keyframes: {
         'accordion-down': {
@@ -109,6 +124,27 @@ export default {
             opacity: '0',
           },
         },
+        'rotate-pulse': {
+          '0%': { transform: 'rotate(0deg) scale(1)' },
+          '50%': { transform: 'rotate(180deg) scale(0.8)' },
+          '100%': { transform: 'rotate(360deg) scale(1)' },
+        },
+        'hover-drift': {
+          '0%': { transform: 'translate(0, 0)' },
+          '20%': { transform: 'translate(1px, -2px)' },
+          '40%': { transform: 'translate(1px, 1.5px)' },
+          '60%': { transform: 'translate(-1px, 2px)' },
+          '80%': { transform: 'translate(-1.5px, -1.75px)' },
+          '100%': { transform: 'translate(0, 0)' },
+        },
+        'hover-wobble': {
+          '0%': { transform: 'rotate(0deg)' },
+          '20%': { transform: 'rotate(3.5deg)' },
+          '40%': { transform: 'rotate(-2deg)' },
+          '60%': { transform: 'rotate(2.5deg)' },
+          '80%': { transform: 'rotate(-2.5deg)' },
+          '100%': { transform: 'rotate(0deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -116,8 +152,19 @@ export default {
         // 光标闪烁动画
         'cursor-blink': 'cursor-blink 0.6s step-end infinite alternate',
         'intro-scroll': 'intro-scroll 3s ease infinite',
+
+        'rotate-pulse':
+            'rotate-pulse 0.75s linear infinite normal both running',
+        'hover-drift':
+            'hover-drift 8s linear infinite',
+        'hover-wobble':
+            'hover-wobble 6s linear infinite normal both running',
       },
     },
+  },
+
+  future: {
+    hoverOnlyWhenSupported: true,
   },
   plugins: [
     require('tailwindcss-animate'),
@@ -129,5 +176,7 @@ export default {
     addDynamicIconSelectors(),
     // 动画插件
     require('tailwindcss-animated'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/container-queries'),
   ],
 } satisfies Config;
