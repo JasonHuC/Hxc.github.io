@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import {PUBLISHED_ENUM,REGEX} from "@/constants";
-import {type getBlogs} from '../actions';
+import {type getBlogs} from '@/features/blog/actions';
 
 export const createBlogSchema = z.object({
     title:z.string().min(1,{message:"长度不少于一个字符"}),

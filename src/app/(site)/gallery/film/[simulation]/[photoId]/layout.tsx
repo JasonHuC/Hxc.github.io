@@ -2,21 +2,21 @@ import {
   RELATED_GRID_PHOTOS_TO_SHOW,
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
+} from '@/features/gallery/photo';
 import { Metadata } from 'next/types';
 import { redirect } from 'next/navigation';
 import {
   PATH_ROOT,
   absolutePathForPhoto,
   absolutePathForPhotoImage,
-} from '@/site/paths';
-import PhotoDetailPage from '@/photo/PhotoDetailPage';
+} from '@/features/gallery/site/paths';
+import PhotoDetailPage from '@/features/gallery/photo/PhotoDetailPage';
 import { ReactNode, cache } from 'react';
-import { FilmSimulation } from '@/simulation';
+import { FilmSimulation } from '@/features/gallery/simulation';
 import {
   getPhotosMetaCached,
   getPhotosNearIdCached,
-} from '@/photo/cache';
+} from '@/features/gallery/photo/cache';
 
 const getPhotosNearIdCachedCached = cache((
   photoId: string,

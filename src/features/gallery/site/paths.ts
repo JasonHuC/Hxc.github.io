@@ -6,24 +6,24 @@ import { parameterize } from '../utility/string';
 import { TAG_HIDDEN } from '../tag';
 
 // Core paths
-export const PATH_ROOT                = '/';
-export const PATH_GRID                = '/grid';
-export const PATH_FEED                = '/feed';
-export const PATH_ADMIN               = '/admin';
-export const PATH_API                 = '/api';
-export const PATH_SIGN_IN             = '/sign-in';
-export const PATH_OG                  = '/og';
+export const PATH_ROOT                = '/gallery';
+export const PATH_GRID                = `${PATH_ROOT}/grid`;
+export const PATH_FEED                = `${PATH_ROOT}/feed`;
+export const PATH_ADMIN               = `${PATH_ROOT}/admin`;
+export const PATH_API                 = `${PATH_ROOT}/api`;
+export const PATH_SIGN_IN             = `${PATH_ROOT}/sign-in`;
+export const PATH_OG                  = `${PATH_ROOT}/og`;
 // eslint-disable-next-line max-len
 export const PATH_GRID_INFERRED       = GRID_HOMEPAGE_ENABLED ? PATH_ROOT : PATH_GRID;
 // eslint-disable-next-line max-len
 export const PATH_FEED_INFERRED       = GRID_HOMEPAGE_ENABLED ? PATH_FEED : PATH_ROOT;
 
 // Path prefixes
-export const PREFIX_PHOTO             = '/p';
-export const PREFIX_TAG               = '/tag';
-export const PREFIX_CAMERA            = '/shot-on';
-export const PREFIX_FILM_SIMULATION   = '/film';
-export const PREFIX_FOCAL_LENGTH      = '/focal';
+export const PREFIX_PHOTO             = `${PATH_ROOT}/p`;
+export const PREFIX_TAG               = `${PATH_ROOT}/tag`;
+export const PREFIX_CAMERA            = `${PATH_ROOT}/shot-on`;
+export const PREFIX_FILM_SIMULATION   = `${PATH_ROOT}/film`;
+export const PREFIX_FOCAL_LENGTH      = `${PATH_ROOT}/focal`;
 
 // Dynamic paths
 const PATH_PHOTO_DYNAMIC              = `${PREFIX_PHOTO}/[photoId]`;
@@ -34,7 +34,7 @@ const PATH_FILM_SIMULATION_DYNAMIC    = `${PREFIX_FILM_SIMULATION}/[simulation]`
 const PATH_FOCAL_LENGTH_DYNAMIC       = `${PREFIX_FOCAL_LENGTH}/[focal]`;
 
 // Admin paths
-export const PATH_ADMIN_PHOTOS        = `gallery/${PATH_ADMIN}/photos`;
+export const PATH_ADMIN_PHOTOS        = `${PATH_ADMIN}/photos`;
 export const PATH_ADMIN_OUTDATED      = `${PATH_ADMIN}/outdated`;
 export const PATH_ADMIN_UPLOADS       = `${PATH_ADMIN}/uploads`;
 export const PATH_ADMIN_TAGS          = `${PATH_ADMIN}/tags`;

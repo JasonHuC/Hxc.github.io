@@ -16,13 +16,13 @@ import camelcaseKeys from 'camelcase-keys';
 import { isBefore } from 'date-fns';
 import type { Metadata } from 'next';
 
-export const OUTDATED_THRESHOLD = new Date('2024-06-16');
+export const OUTDATED_THRESHOLD = new Date('2024-01-01');
 
 // INFINITE SCROLL: FEED
 export const INFINITE_SCROLL_FEED_INITIAL =
-  process.env.NODE_ENV === 'development' ? 2 : 12;
+  process.env.NODE_ENV === 'development' ? 12 : 12;
 export const INFINITE_SCROLL_FEED_MULTIPLE =
-  process.env.NODE_ENV === 'development' ? 2 : 24;
+  process.env.NODE_ENV === 'development' ? 12 : 24;
 
 // INFINITE SCROLL: GRID
 export const INFINITE_SCROLL_GRID_INITIAL = HIGH_DENSITY_GRID
@@ -41,6 +41,11 @@ export const ACCEPTED_PHOTO_FILE_TYPES = [
   'image/jpg',
   'image/jpeg',
   'image/png',
+    // 以下不可用，仅作标记
+    '.raw',
+    '.exif',
+    '.heif',
+    '.dng',
 ];
 
 export const MAX_PHOTO_UPLOAD_SIZE_IN_BYTES = 50_000_000;

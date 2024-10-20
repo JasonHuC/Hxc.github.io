@@ -15,7 +15,7 @@ import { revalidatePath } from 'next/cache';//针对特定路径进行局部刷�
 
 export const maxDuration = 60;//页面的最大缓存时间为60秒。
 
-const DEBUG_PHOTO_BLOBS = true;//本地开发时，你可以使用DEBUG_PHOTO_BLOBS调试存储的照片Blob URL。
+const DEBUG_PHOTO_BLOBS = false;//本地开发时，你可以使用DEBUG_PHOTO_BLOBS调试存储的照片Blob URL。
 
 const INFINITE_SCROLL_INITIAL_ADMIN_PHOTOS = 25;
 const INFINITE_SCROLL_MULTIPLE_ADMIN_PHOTOS = 50;

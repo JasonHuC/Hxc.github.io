@@ -2,19 +2,19 @@ import {
   RELATED_GRID_PHOTOS_TO_SHOW,
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
+} from '@/features/gallery/photo';
 import { Metadata } from 'next/types';
 import { redirect } from 'next/navigation';
 import {
   PATH_ROOT,
   absolutePathForPhoto,
   absolutePathForPhotoImage,
-} from '@/site/paths';
-import PhotoDetailPage from '@/photo/PhotoDetailPage';
-import { getPhotosNearIdCached } from '@/photo/cache';
+} from '@/features/gallery/site/paths';
+import PhotoDetailPage from '@/features/gallery/photo/PhotoDetailPage';
+import { getPhotosNearIdCached } from '@/features/gallery/photo/cache';
 import { ReactNode, cache } from 'react';
-import { getPhotosMeta } from '@/photo/db/query';
-import { getFocalLengthFromString } from '@/focal';
+import { getPhotosMeta } from '@/features/gallery/photo/db/query';
+import { getFocalLengthFromString } from '@/features/gallery/focal';
 
 const getPhotosNearIdCachedCached = cache((photoId: string, focal: number) =>
   getPhotosNearIdCached(

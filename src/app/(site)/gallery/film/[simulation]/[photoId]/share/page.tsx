@@ -1,7 +1,7 @@
-import { getPhotoCached } from '@/photo/cache';
-import PhotoShareModal from '@/photo/PhotoShareModal';
-import { FilmSimulation } from '@/simulation';
-import { PATH_ROOT } from '@/site/paths';
+import { getPhotoCached } from '@/features/gallery/photo/cache';
+import PhotoShareModal from '@/features/gallery/photo/PhotoShareModal';
+import { FilmSimulation } from '@/features/gallery/simulation';
+import { PATH_ROOT } from '@/features/gallery/site/paths';
 import { redirect } from 'next/navigation';
 
 export default async function Share({

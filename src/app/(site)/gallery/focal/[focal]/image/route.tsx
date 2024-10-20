@@ -1,14 +1,14 @@
-import { getPhotosCached } from '@/photo/cache';
+import { getPhotosCached } from '@/features/gallery/photo/cache';
 import {
   IMAGE_OG_DIMENSION_SMALL,
   MAX_PHOTOS_TO_SHOW_PER_TAG,
-} from '@/image-response';
-import { getIBMPlexMonoMedium } from '@/site/font';
+} from '@/features/gallery/image-response';
+import { getIBMPlexMonoMedium } from '@/features/gallery/site/font';
 import { ImageResponse } from 'next/og';
-import { getImageResponseCacheControlHeaders } from '@/image-response/cache';
+import { getImageResponseCacheControlHeaders } from '@/features/gallery/image-response/cache';
 import FocalLengthImageResponse from
-  '@/image-response/FocalLengthImageResponse';
-import { getFocalLengthFromString } from '@/focal';
+  '@/features/gallery/image-response/FocalLengthImageResponse';
+import { getFocalLengthFromString } from '@/features/gallery/focal';
 
 export async function GET(
   _: Request,

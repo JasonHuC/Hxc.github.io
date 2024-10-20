@@ -1,8 +1,8 @@
-import { INFINITE_SCROLL_GRID_INITIAL } from '@/photo';
-import { PATH_ROOT } from '@/site/paths';
-import { generateMetaForTag } from '@/tag';
-import TagOverview from '@/tag/TagOverview';
-import { getPhotosTagDataCached } from '@/tag/data';
+import { INFINITE_SCROLL_GRID_INITIAL } from '@/features/gallery/photo';
+import { PATH_ROOT } from '@/features/gallery/site/paths';
+import { generateMetaForTag } from '@/features/gallery/tag';
+import TagOverview from '@/features/gallery/tag/TagOverview';
+import { getPhotosTagDataCached } from '@/features/gallery/tag/data';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { cache } from 'react';

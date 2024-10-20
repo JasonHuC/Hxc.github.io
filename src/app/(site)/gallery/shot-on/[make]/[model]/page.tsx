@@ -1,9 +1,9 @@
 import { Metadata } from 'next/types';
-import { CameraProps } from '@/camera';
-import { generateMetaForCamera } from '@/camera/meta';
-import { INFINITE_SCROLL_GRID_INITIAL } from '@/photo';
-import { getPhotosCameraDataCached } from '@/camera/data';
-import CameraOverview from '@/camera/CameraOverview';
+import { CameraProps } from '@/features/gallery/camera';
+import { generateMetaForCamera } from '@/features/gallery/camera/meta';
+import { INFINITE_SCROLL_GRID_INITIAL } from '@/features/gallery/photo';
+import { getPhotosCameraDataCached } from '@/features/gallery/camera/data';
+import CameraOverview from '@/features/gallery/camera/CameraOverview';
 import { cache } from 'react';
 
 const getPhotosCameraDataCachedCached = cache((

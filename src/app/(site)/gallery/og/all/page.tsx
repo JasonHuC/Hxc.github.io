@@ -1,11 +1,11 @@
 import {
   INFINITE_SCROLL_GRID_INITIAL,
   INFINITE_SCROLL_GRID_MULTIPLE,
-} from '@/photo';
-import { getPhotosCached } from '@/photo/cache';
-import { getPhotosMeta } from '@/photo/db/query';
-import StaggeredOgPhotos from '@/photo/StaggeredOgPhotos';
-import StaggeredOgPhotosInfinite from '@/photo/StaggeredOgPhotosInfinite';
+} from '@/features/gallery/photo';
+import { getPhotosCached } from '@/features/gallery/photo/cache';
+import { getPhotosMeta } from '@/features/gallery/photo/db/query';
+import StaggeredOgPhotos from '@/features/gallery/photo/StaggeredOgPhotos';
+import StaggeredOgPhotosInfinite from '@/features/gallery/photo/StaggeredOgPhotosInfinite';
 
 export default async function OGPage() {
   const [

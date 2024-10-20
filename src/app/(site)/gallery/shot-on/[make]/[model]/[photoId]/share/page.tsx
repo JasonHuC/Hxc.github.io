@@ -1,7 +1,7 @@
-import { getPhotoCached } from '@/photo/cache';
-import { PhotoCameraProps, cameraFromPhoto } from '@/camera';
-import PhotoShareModal from '@/photo/PhotoShareModal';
-import { PATH_ROOT } from '@/site/paths';
+import { getPhotoCached } from '@/features/gallery/photo/cache';
+import { PhotoCameraProps, cameraFromPhoto } from '@/features/gallery/camera';
+import PhotoShareModal from '@/features/gallery/photo/PhotoShareModal';
+import { PATH_ROOT } from '@/features/gallery/site/paths';
 import { redirect } from 'next/navigation';
 
 export default async function Share({

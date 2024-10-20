@@ -20,7 +20,7 @@ export default function PhotoEscapeHandler() {
     // 用于添加键盘事件监听器，当组件加载时会添加 keyup 事件监听器，当组件卸载时会移除这个监听器。
     if (shouldRespondToKeyboardCommands) {//如果false则不会添加事件监听器
       const onKeyUp = (e: KeyboardEvent) => {
-        if (e.key.toUpperCase() === 'ESCAPE' && escapePath) {
+        if (e.key?.toUpperCase() === 'ESCAPE' && escapePath) {
           router.push(escapePath, { scroll: false });//跳转时保持当前的滚动位置
         }
       };

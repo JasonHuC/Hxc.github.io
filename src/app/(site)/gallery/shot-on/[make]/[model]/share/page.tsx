@@ -1,10 +1,10 @@
-import { CameraProps } from '@/camera';
-import CameraShareModal from '@/camera/CameraShareModal';
-import { generateMetaForCamera } from '@/camera/meta';
+import { CameraProps } from '@/features/gallery/camera';
+import CameraShareModal from '@/features/gallery/camera/CameraShareModal';
+import { generateMetaForCamera } from '@/features/gallery/camera/meta';
 import { Metadata } from 'next/types';
-import { INFINITE_SCROLL_GRID_INITIAL } from '@/photo';
-import { getPhotosCameraDataCached } from '@/camera/data';
-import CameraOverview from '@/camera/CameraOverview';
+import { INFINITE_SCROLL_GRID_INITIAL } from '@/features/gallery/photo';
+import { getPhotosCameraDataCached } from '@/features/gallery/camera/data';
+import CameraOverview from '@/features/gallery/camera/CameraOverview';
 import { cache } from 'react';
 
 const getPhotosCameraDataCachedCached = cache((

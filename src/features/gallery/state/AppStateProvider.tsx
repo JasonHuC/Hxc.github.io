@@ -8,7 +8,7 @@ import usePathnames from '../hooks/usePathnames';
 import { getAuthAction } from '@/auth/actions';
 import useSWR from 'swr';
 import { MATTE_PHOTOS } from '../site/config';
-// import { getPhotosHiddenMetaCachedAction } from '../photo/actions';
+import { getPhotosHiddenMetaCachedAction } from '../photo/actions';
 
 export default function AppStateProvider({
   children,
@@ -54,17 +54,17 @@ export default function AppStateProvider({
     setUserEmail(data?.user?.email ?? undefined);
   }, [data]);
   const isUserSignedIn = Boolean(userEmail);
-  // useEffect(() => {
-  //   if (isUserSignedIn) {
-  //     const timeout = setTimeout(() =>
-  //       getPhotosHiddenMetaCachedAction().then(({ count }) =>
-  //         setHiddenPhotosCount(count))
-  //     , 100);
-  //     return () => clearTimeout(timeout);
-  //   } else {
-  //     setHiddenPhotosCount(0);
-  //   }
-  // }, [isUserSignedIn]);
+  useEffect(() => {
+    if (isUserSignedIn) {
+      const timeout = setTimeout(() =>
+        getPhotosHiddenMetaCachedAction().then(({ count }) =>
+          setHiddenPhotosCount(count))
+      , 100);
+      return () => clearTimeout(timeout);
+    } else {
+      setHiddenPhotosCount(0);
+    }
+  }, [isUserSignedIn]);
 
   const registerAdminUpdate = useCallback(() =>
     setAdminUpdateTimes(updates => [...updates, new Date()])

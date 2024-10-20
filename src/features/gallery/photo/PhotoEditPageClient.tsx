@@ -8,7 +8,7 @@ import PhotoForm from './form/PhotoForm';
 import { Tags } from '@/features/gallery/tag';
 import AiButton from './ai/AiButton';
 import usePhotoFormParent from './form/usePhotoFormParent';
-import ExifSyncButton from '@/features/gallery/admin/ExifSyncButton';
+import ExifSyncButton from '@/app/admin/gallery/ExifSyncButton';
 import { useState } from 'react';
 
 export default function PhotoEditPageClient({

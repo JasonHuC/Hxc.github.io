@@ -1,8 +1,8 @@
-import { INFINITE_SCROLL_GRID_INITIAL } from '@/photo';
-import { generateMetaForTag } from '@/tag';
-import TagOverview from '@/tag/TagOverview';
-import TagShareModal from '@/tag/TagShareModal';
-import { getPhotosTagDataCached } from '@/tag/data';
+import { INFINITE_SCROLL_GRID_INITIAL } from '@/features/gallery/photo';
+import { generateMetaForTag } from '@/features/gallery/tag';
+import TagOverview from '@/features/gallery/tag/TagOverview';
+import TagShareModal from '@/features/gallery/tag/TagShareModal';
+import { getPhotosTagDataCached } from '@/features/gallery/tag/data';
 import type { Metadata } from 'next';
 import { cache } from 'react';
 

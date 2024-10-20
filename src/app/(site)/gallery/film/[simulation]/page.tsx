@@ -1,7 +1,7 @@
-import { INFINITE_SCROLL_GRID_INITIAL } from '@/photo';
-import { FilmSimulation, generateMetaForFilmSimulation } from '@/simulation';
-import FilmSimulationOverview from '@/simulation/FilmSimulationOverview';
-import { getPhotosFilmSimulationDataCached } from '@/simulation/data';
+import { INFINITE_SCROLL_GRID_INITIAL } from '@/features/gallery/photo';
+import { FilmSimulation, generateMetaForFilmSimulation } from '@/features/gallery/simulation';
+import FilmSimulationOverview from '@/features/gallery/simulation/FilmSimulationOverview';
+import { getPhotosFilmSimulationDataCached } from '@/features/gallery/simulation/data';
 import { Metadata } from 'next/types';
 import { cache } from 'react';
 

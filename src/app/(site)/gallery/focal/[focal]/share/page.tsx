@@ -1,8 +1,8 @@
-import { generateMetaForFocalLength, getFocalLengthFromString } from '@/focal';
-import FocalLengthOverview from '@/focal/FocalLengthOverview';
-import FocalLengthShareModal from '@/focal/FocalLengthShareModal';
-import { getPhotosFocalLengthDataCached } from '@/focal/data';
-import { INFINITE_SCROLL_GRID_INITIAL } from '@/photo';
+import { generateMetaForFocalLength, getFocalLengthFromString } from '@/features/gallery/focal';
+import FocalLengthOverview from '@/features/gallery/focal/FocalLengthOverview';
+import FocalLengthShareModal from '@/features/gallery/focal/FocalLengthShareModal';
+import { getPhotosFocalLengthDataCached } from '@/features/gallery/focal/data';
+import { INFINITE_SCROLL_GRID_INITIAL } from '@/features/gallery/photo';
 import type { Metadata } from 'next';
 import { cache } from 'react';
 

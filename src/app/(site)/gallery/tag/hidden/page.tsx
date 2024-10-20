@@ -1,12 +1,12 @@
-import AnimateItems from '@/components/AnimateItems';
-import Note from '@/components/Note';
-import SiteGrid from '@/components/SiteGrid';
-import PhotoGrid from '@/photo/PhotoGrid';
-import { getPhotosNoStore } from '@/photo/cache';
-import { getPhotosMeta } from '@/photo/db/query';
-import { absolutePathForTag } from '@/site/paths';
-import { TAG_HIDDEN, descriptionForTaggedPhotos, titleForTag } from '@/tag';
-import HiddenHeader from '@/tag/HiddenHeader';
+import AnimateItems from '@/features/gallery/components/AnimateItems';
+import Note from '@/features/gallery/components/Note';
+import SiteGrid from '@/features/gallery/components/SiteGrid';
+import PhotoGrid from '@/features/gallery/photo/PhotoGrid';
+import { getPhotosNoStore } from '@/features/gallery/photo/cache';
+import { getPhotosMeta } from '@/features/gallery/photo/db/query';
+import { absolutePathForTag } from '@/features/gallery/site/paths';
+import { TAG_HIDDEN, descriptionForTaggedPhotos, titleForTag } from '@/features/gallery/tag';
+import HiddenHeader from '@/features/gallery/tag/HiddenHeader';
 import { Metadata } from 'next';
 import { cache } from 'react';
 

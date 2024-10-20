@@ -2,19 +2,19 @@ import {
   RELATED_GRID_PHOTOS_TO_SHOW,
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
+} from '@/features/gallery/photo';
 import { Metadata } from 'next/types';
 import { redirect } from 'next/navigation';
 import {
   PATH_ROOT,
   absolutePathForPhoto,
   absolutePathForPhotoImage,
-} from '@/site/paths';
-import PhotoDetailPage from '@/photo/PhotoDetailPage';
-import { getPhotosNearIdCached } from '@/photo/cache';
-import { IS_PRODUCTION, STATICALLY_OPTIMIZED_PAGES } from '@/site/config';
-import { getPhotoIds } from '@/photo/db/query';
-import { GENERATE_STATIC_PARAMS_LIMIT } from '@/photo/db';
+} from '@/features/gallery/site/paths';
+import PhotoDetailPage from '@/features/gallery/photo/PhotoDetailPage';
+import { getPhotosNearIdCached } from '@/features/gallery/photo/cache';
+import { IS_PRODUCTION, STATICALLY_OPTIMIZED_PAGES } from '@/features/gallery/site/config';
+import { getPhotoIds } from '@/features/gallery/photo/db/query';
+import { GENERATE_STATIC_PARAMS_LIMIT } from '@/features/gallery/photo/db';
 import { ReactNode, cache } from 'react';
 
 export const maxDuration = 60;

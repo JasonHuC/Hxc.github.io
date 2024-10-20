@@ -1,10 +1,10 @@
-import CameraOGTile from '@/camera/CameraOGTile';
-import FocalLengthOGTile from '@/focal/FocalLengthOGTile';
-import PhotoOGTile from '@/photo/PhotoOGTile';
-import { getPhotosCached } from '@/photo/cache';
-import FilmSimulationOGTile from '@/simulation/FilmSimulationOGTile';
-import { TAG_FAVS } from '@/tag';
-import TagOGTile from '@/tag/TagOGTile';
+import CameraOGTile from '@/features/gallery/camera/CameraOGTile';
+import FocalLengthOGTile from '@/features/gallery/focal/FocalLengthOGTile';
+import PhotoOGTile from '@/features/gallery/photo/PhotoOGTile';
+import { getPhotosCached } from '@/features/gallery/photo/cache';
+import FilmSimulationOGTile from '@/features/gallery/simulation/FilmSimulationOGTile';
+import { TAG_FAVS } from '@/features/gallery/tag';
+import TagOGTile from '@/features/gallery/tag/TagOGTile';
 
 const tag = 'cicadas';
 const camera = { make: 'Fujifilm', model: 'X-T5' };

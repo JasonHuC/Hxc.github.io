@@ -1,13 +1,13 @@
-import { getPhotoCached } from '@/photo/cache';
-import { IMAGE_OG_DIMENSION } from '@/image-response';
-import PhotoImageResponse from '@/image-response/PhotoImageResponse';
-import { getIBMPlexMonoMedium } from '@/site/font';
+import { getPhotoCached } from '@/features/gallery/photo/cache';
+import { IMAGE_OG_DIMENSION } from '@/features/gallery/image-response';
+import PhotoImageResponse from '@/features/gallery/image-response/PhotoImageResponse';
+import { getIBMPlexMonoMedium } from '@/features/gallery/site/font';
 import { ImageResponse } from 'next/og';
-import { getImageResponseCacheControlHeaders } from '@/image-response/cache';
-import { IS_PRODUCTION, STATICALLY_OPTIMIZED_OG_IMAGES } from '@/site/config';
-import { getPhotoIds } from '@/photo/db/query';
-import { GENERATE_STATIC_PARAMS_LIMIT } from '@/photo/db';
-import { isNextImageReadyBasedOnPhotos } from '@/photo';
+import { getImageResponseCacheControlHeaders } from '@/features/gallery/image-response/cache';
+import { IS_PRODUCTION, STATICALLY_OPTIMIZED_OG_IMAGES } from '@/features/gallery/site/config';
+import { getPhotoIds } from '@/features/gallery/photo/db/query';
+import { GENERATE_STATIC_PARAMS_LIMIT } from '@/features/gallery/photo/db';
+import { isNextImageReadyBasedOnPhotos } from '@/features/gallery/photo';
 
 export let generateStaticParams:
   (() => Promise<{ photoId: string }[]>) | undefined = undefined;

@@ -1,12 +1,12 @@
 import {
   INFINITE_SCROLL_FEED_INITIAL,
   generateOgImageMetaForPhotos,
-} from '@/photo';
-import PhotosEmptyState from '@/photo/PhotosEmptyState';
+} from '@/features/gallery/photo';
+import PhotosEmptyState from '@/features/gallery/photo/PhotosEmptyState';
 import { Metadata } from 'next/types';
 import { cache } from 'react';
-import { getPhotos, getPhotosMeta } from '@/photo/db/query';
-import PhotoFeedPage from '@/photo/PhotoFeedPage';
+import { getPhotos, getPhotosMeta } from '@/features/gallery/photo/db/query';
+import PhotoFeedPage from '@/features/gallery/photo/PhotoFeedPage';
 
 export const dynamic = 'force-static';
 export const maxDuration = 60;

@@ -3,13 +3,13 @@ import {
   getIdFromStorageUrl,
 } from '@/features/gallery/services/storage';
 import { convertExifToFormData } from '@/features/gallery/photo/form';
-// import {
-//   getFujifilmSimulationFromMakerNote,
-//   isExifForFujifilm,
-// } from '@/features/gallery/vendors/fujifilm';
+import {
+  getFujifilmSimulationFromMakerNote,
+  isExifForFujifilm,
+} from '@/features/gallery/vendors/fujifilm';
 import { ExifData, ExifParserFactory } from 'ts-exif-parser';
 import { PhotoFormData } from './form';
-// import { FilmSimulation } from '@/features/gallery/simulation';
+import { FilmSimulation } from '@/features/gallery/simulation';
 import sharp, { Sharp } from 'sharp';
 import { GEO_PRIVACY_ENABLED, PRO_MODE_ENABLED } from '@/features/gallery/site/config';
 
@@ -47,7 +47,7 @@ export const extractImageDataFromBlobPath = async (
     : undefined;
 
   let exifData: ExifData | undefined;
-  // let filmSimulation: FilmSimulation | undefined;
+  let filmSimulation: FilmSimulation | undefined;
   let blurData: string | undefined;
   let imageResizedBase64: string | undefined;
   let shouldStripGpsData = false;
@@ -60,16 +60,16 @@ export const extractImageDataFromBlobPath = async (
     exifData = parser.parse();
 
     // Capture film simulation for Fujifilm cameras
-    // if (isExifForFujifilm(exifData)) {
-    //   // Parse exif data again with binary fields
-    //   // in order to access MakerNote tag
-    //   parser.enableBinaryFields(true);
-    //   const exifDataBinary = parser.parse();
-    //   const makerNote = exifDataBinary.tags?.MakerNote;
-    //   if (Buffer.isBuffer(makerNote)) {
-    //     filmSimulation = getFujifilmSimulationFromMakerNote(makerNote);
-    //   }
-    // }
+    if (isExifForFujifilm(exifData)) {
+      // Parse exif data again with binary fields
+      // in order to access MakerNote tag
+      parser.enableBinaryFields(true);
+      const exifDataBinary = parser.parse();
+      const makerNote = exifDataBinary.tags?.MakerNote;
+      if (Buffer.isBuffer(makerNote)) {
+        filmSimulation = getFujifilmSimulationFromMakerNote(makerNote);
+      }
+    }
 
     if (generateBlurData) {
       blurData = await blurImage(fileBytes);

@@ -2,14 +2,14 @@ import {
   RELATED_GRID_PHOTOS_TO_SHOW,
   descriptionForPhoto,
   titleForPhoto,
-} from '@/photo';
-import PhotoDetailPage from '@/photo/PhotoDetailPage';
+} from '@/features/gallery/photo';
+import PhotoDetailPage from '@/features/gallery/photo/PhotoDetailPage';
 import {
   getPhotosNearIdCached,
-} from '@/photo/cache';
-import { getPhotosMeta } from '@/photo/db/query';
-import { PATH_ROOT, absolutePathForPhoto } from '@/site/paths';
-import { TAG_HIDDEN } from '@/tag';
+} from '@/features/gallery/photo/cache';
+import { getPhotosMeta } from '@/features/gallery/photo/db/query';
+import { PATH_ROOT, absolutePathForPhoto } from '@/features/gallery/site/paths';
+import { TAG_HIDDEN } from '@/features/gallery/tag';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { cache } from 'react';

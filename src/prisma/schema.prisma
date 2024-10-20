@@ -1,37 +1,28 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
-// 使用 postgresql 作为数据库
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") // uses connection pooling
+  url      = env("DATABASE_URL")
 }
 
 model Account {
-  id                String  @id @default(cuid()) //@id 修饰符用于标记字段为主键 ; @default 修饰符用于指定字段的默认值
+  id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text // 当你明确知道某个字段可能需要存储长文本时，使用 @db.Text 可以明确指示 Prisma 在数据库中为该字段使用 TEXT 类型，从而避免任何长度限制问题。|| Prisma 通常将 String 类型映射为数据库中的 VARCHAR 类型（长度可能依数据库的默认设置而定）。这在大多数用例中是足够的，但对于需要存储可能超出普通长度限制的数据（如长文本、JSON 字符串、代码片段等），默认的 VARCHAR 类型可能就不够用了。
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade) // userId 是外键，对应 User 表的主键 id
-
-  // onDelete: Cascade：这定义了如果关联的 User 记录被删除时对当前记录的处理策略::Cascade 选项意味着如果 User 记录被删除，那么引用这个 User 的当前模型的记录也将被删除。
-  @@unique([provider, providerAccountId]) // 不能存在两个provider，providerAccountId一样的Account.
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
@@ -61,64 +52,88 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-enum TagTypeEnum {
-  // 通用
-  ALL
-  // 仅用于blog
-  BLOG
-  // 仅用于片段
-  SNIPPET
-  // 仅用于笔记
-  NOTE
-}
-
 model Tag {
-  name     String      @unique
-  slug     String      @unique
-  blogs    Blog[]
-  snippets Snippet[]
-  notes    Note[]
-  type     TagTypeEnum @default(ALL)
-
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  name      String      @unique
+  slug      String      @unique
+  type      TagTypeEnum @default(ALL)
+  id        String      @id @default(cuid())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  blogs     Blog[]      @relation("BlogToTag")
+  notes     Note[]      @relation("NoteToTag")
+  snippets  Snippet[]   @relation("SnippetToTag")
 }
 
 model Blog {
-  title       String  @unique
-  slug        String  @unique
+  title       String   @unique
+  slug        String   @unique
   description String
-  body        String  @db.Text
+  body        String
   cover       String?
   author      String?
-  published   Boolean @default(false)
-  tags        Tag[]
-
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  published   Boolean  @default(false)
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tags        Tag[]    @relation("BlogToTag")
 }
 
 model Snippet {
-  title       String  @unique
-  slug        String  @unique
+  title       String   @unique
+  slug        String   @unique
   description String
-  body        String  @db.Text
-  published   Boolean @default(false)
-  tags        Tag[]
-
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  body        String
+  published   Boolean  @default(false)
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tags        Tag[]    @relation("SnippetToTag")
 }
 
 model Note {
-  body      String  @db.Text
-  published Boolean @default(false)
-  tags      Tag[]
-
+  body      String
+  published Boolean  @default(false)
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  tags      Tag[]    @relation("NoteToTag")
+}
+
+model photos {
+  id                          String    @id @db.VarChar(8)
+  url                         String    @db.VarChar(255)
+  extension                   String    @db.VarChar(255)
+  aspect_ratio                Float?    @default(1.5) @db.Real
+  blur_data                   String?
+  title                       String?   @db.VarChar(255)
+  caption                     String?
+  semantic_description        String?
+  tags                        String[]  @db.VarChar(255)
+  make                        String?   @db.VarChar(255)
+  model                       String?   @db.VarChar(255)
+  focal_length                Int?      @db.SmallInt
+  focal_length_in_35mm_format Int?      @db.SmallInt
+  lens_make                   String?   @db.VarChar(255)
+  lens_model                  String?   @db.VarChar(255)
+  f_number                    Float?    @db.Real
+  iso                         Int?      @db.SmallInt
+  exposure_time               Float?
+  exposure_compensation       Float?    @db.Real
+  location_name               String?   @db.VarChar(255)
+  latitude                    Float?
+  longitude                   Float?
+  film_simulation             String?   @db.VarChar(255)
+  priority_order              Float?    @db.Real
+  taken_at                    DateTime  @db.Timestamptz(6)
+  taken_at_naive              String    @db.VarChar(255)
+  hidden                      Boolean?
+  updated_at                  DateTime? @default(now()) @db.Timestamptz(6)
+  created_at                  DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+enum TagTypeEnum {
+  ALL
+  BLOG
+  SNIPPET
+  NOTE
 }

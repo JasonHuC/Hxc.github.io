@@ -170,12 +170,14 @@ export const getPhotosMetaCached = (
 ) => unstable_cache(
   getPhotosMeta,
   [KEY_PHOTOS, KEY_COUNT, KEY_DATE_RANGE, ...getPhotosCacheKeys(...args)],
+    {revalidate:60}
 )(...args);
 
 export const getPhotosMostRecentUpdateCached =
   unstable_cache(
     () => getPhotosMostRecentUpdate(),
     [KEY_PHOTOS, KEY_COUNT, KEY_DATE_RANGE],
+
   );
 
 export const getPhotoCached = (...args: Parameters<typeof getPhoto>) =>

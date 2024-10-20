@@ -1,13 +1,13 @@
-import { getPhotosCached } from '@/photo/cache';
-import { CameraProps, getCameraFromParams } from '@/camera';
+import { getPhotosCached } from '@/features/gallery/photo/cache';
+import { CameraProps, getCameraFromParams } from '@/features/gallery/camera';
 import {
   IMAGE_OG_DIMENSION_SMALL,
   MAX_PHOTOS_TO_SHOW_PER_TAG,
-} from '@/image-response';
-import CameraImageResponse from '@/image-response/CameraImageResponse';
-import { getIBMPlexMonoMedium } from '@/site/font';
+} from '@/features/gallery/image-response';
+import CameraImageResponse from '@/features/gallery/image-response/CameraImageResponse';
+import { getIBMPlexMonoMedium } from '@/features/gallery/site/font';
 import { ImageResponse } from 'next/og';
-import { getImageResponseCacheControlHeaders } from '@/image-response/cache';
+import { getImageResponseCacheControlHeaders } from '@/features/gallery/image-response/cache';
 
 export async function GET(
   _: Request,
