@@ -1,7 +1,7 @@
 'use client';
 
 import HttpStatusPage from '@/features/gallery/components/HttpStatusPage';
-import { clsx } from 'clsx/lite';
+import { clsx } from 'clsx';
 import { usePathname } from 'next/navigation';
 
 export default function NotFound() {
