@@ -4,12 +4,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "db:gen": "prisma generate --schema=src/prisma/schema.prisma",
-    "db:push": "prisma db push --schema=src/prisma/schema.prisma",
-    "db:mig": "prisma migrate dev --schema=src/prisma/schema.prisma",
-    "db:pull": "prisma db pull --schema=src/prisma/schema.prisma",
-    "db:stu": "prisma studio --schema=src/prisma/schema.prisma",
-    "postinstall": "prisma generate && prisma migrate deploy --schema=src/prisma/schema.prisma"
+    "db:gen": "prisma generate",
+    "db:push": "prisma db push",
+    "db:mig": "prisma migrate dev",
+    "db:pull": "prisma db pull",
+    "db:stu": "prisma studio",
+    "postinstall": "prisma generate && prisma migrate deploy"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.54",
