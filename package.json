@@ -8,7 +8,8 @@
     "db:push": "prisma db push --schema=src/prisma/schema.prisma",
     "db:mig": "prisma migrate dev --schema=src/prisma/schema.prisma",
     "db:pull": "prisma db pull --schema=src/prisma/schema.prisma",
-    "db:stu": "prisma studio --schema=src/prisma/schema.prisma"
+    "db:stu": "prisma studio --schema=src/prisma/schema.prisma",
+    "postinstall": "prisma generate && prisma migrate deploy"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.54",
